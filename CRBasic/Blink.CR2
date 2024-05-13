@@ -1,0 +1,14 @@
+'CR200 Series Datalogger
+'To create a different opening program template, type in new
+'instructions and select Template | Save as Default Template
+'date: 10/05/2024
+'program author: Isaac Vinícius
+Public Dim i
+BeginProg
+    Scan(10, Sec)          ' Configurando scan a cada 10 segundos
+        PortSet(2, 1)      ' Liga o LED (C2 alto)
+        Delay(5, Sec)      ' Mantém o LED ligado por 5 segundos
+        PortSet(2, 0)      ' Desliga o LED (C2 baixo)
+    NextScan
+EndProg
+

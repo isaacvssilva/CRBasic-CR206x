@@ -1,0 +1,33 @@
+'CR200 Series Datalogger
+'To create a different opening program template, type in new
+'instructions and select Template | Save as Default Template
+'date: 13/05/2024
+'program author: Isaac Vinícius
+
+'Declare Public Variables
+Public Temperatura, Umidade, Pressao 'variáveis para armazenar a leitura de temperatura, umidade e pressão
+
+'Define Data Tables.
+'Configurando uma tabela para armazenar continuamente as leituras de temperatura, umidade e pressao
+DataTable(TempTable, 1, -1)   ' Nome: TempTable, TrigVar: 1 (sempre verdadeiro), Tamanho: -1 (alocação automática de memória)
+    DataInterval(0, 1, Min)   ' Armazena dados a cada 1 minuto
+    Sample(1, Temperatura)    ' Armazena a leitura de temperatura na tabela
+    Sample(1, Umidade)        ' Armazena a leitura de umidade na tabela
+    Sample(1, Pressao)        ' Armazena a leitura de pressão na tabela
+EndTable
+
+
+'Main Program
+BeginProg
+	Scan (10, Sec)
+    'Simula a leitura do sensor de temperatura
+    Temperatura = 25.0 + RND * 5  ' Gerando uma temperatura simulada
+    Umidade = 50.0 + RND * 10     ' Gerando uma umidade simulada
+    Pressao = 1013 + RND * 20     ' Gerando uma pressão atmosférica simulada
+    CallTable TempTable     ' Chamando a tabela para processar e armazenar a leitura
+    Print(2, 9600, "Temp=", Temperatura, "C")
+    Print(2, 9600, "Umidade=", Umidade, "Hm")
+    Print(2, 9600, "Pressao=", Pressao, "hPa")
+	NextScan
+EndProg
+

@@ -1,0 +1,13 @@
+'CR200 Series Datalogger
+'To create a different opening program template, type in new
+'instructions and select Template | Save as Default Template
+'date: 09/05/2024
+'program author: Isaac Vinícius
+
+Public Dim i
+BeginProg
+  Scan (5, sec)
+    Print(2, 9600, "Send w/ Logger: Ola") 'Enviando mensagem via RS232
+  NextScan
+EndProg
+

@@ -1,0 +1,22 @@
+'CR200 Series Datalogger
+'To create a different opening program template, type in new
+'instructions and select Template | Save as Default Template
+'date: 13/05/2024
+'program author: 09:45
+
+Public Temp, Humidity
+'Main Program
+BeginProg
+    'Definindo intervalo de varredura
+    Scan(1, Sec)  ' Varredura a cada 1 segundo
+
+        'Simulação de coleta de dados dos sensores
+        Temp = 23.5  ' Supondo que seja a leitura de temperatura
+        Humidity = 45.0  ' Suponhdo que seja a leitura de umidade
+
+        'Enviando os dados coletados via RS232
+        Print(2, 9600, "Temp=", Temp, "C, Humidity=", Humidity, "%")
+
+    NextScan
+EndProg
+

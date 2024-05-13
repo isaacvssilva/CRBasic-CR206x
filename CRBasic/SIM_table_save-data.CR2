@@ -1,0 +1,26 @@
+'CR200 Series Datalogger
+'To create a different opening program template, type in new
+'instructions and select Template | Save as Default Template
+'date: 13/05/2024
+'program author: Isaac Vinícius
+
+'Declare Public Variables
+Public Temperatura 'variável para armazenar a leitura de temperatura
+
+'Define Data Tables.
+'Configurando uma tabela para armazenar continuamente as leituras de temperatura
+DataTable(TempTable, 1, -1)   ' Nome: TempTable, TrigVar: 1 (sempre verdadeiro), Tamanho: -1 (alocação automática de memória)
+    DataInterval(0, 1, Min)   ' Armazena dados a cada 10 segundos
+    Sample(1, Temperatura)    ' Armazena a leitura de temperatura na tabela
+EndTable
+
+'Main Program
+BeginProg
+	Scan (10, Sec)
+    'Simula a leitura do sensor de temperatura
+    Temperatura = 25.0 + RND * 5  ' Gerando uma temperatura simulada de 25°C com uma variação aleatória de até 5°C
+    CallTable TempTable     ' Chamando a tabela para processar e armazenar a leitura
+    Print(2, 9600, "Temp =", Temperatura, "C")
+	NextScan
+EndProg
+
